@@ -447,20 +447,25 @@ REFERENCES caja(idEstetica, noCaja) ON UPDATE CASCADE ON DELETE CASCADE;
  ALTER TABLE cliente ADD CONSTRAINT cliente_pkey PRIMARY KEY(curp);
 
  /*
- * Llaves tarjeta
+ * Llaves tarjeta (INICIO)
  */
-  ALTER TABLE tarjeta ADD CONSTRAINT tarjeta_pkey PRIMARY KEY(numTarjeta);
-  ALTER TABLE tarjeta ADD CONSTRAINT tarjeta_fkeyCliente FOREIGN KEY(curpCliente)
+ALTER TABLE tarjeta ADD CONSTRAINT tarjeta_pkey PRIMARY KEY(numTarjeta);
+COMMENT ON CONSTRAINT tarjeta_pkey ON tarjeta IS 'La llave primaria de la tarjeta';
+ALTER TABLE tarjeta ADD CONSTRAINT tarjeta_fkeyCliente FOREIGN KEY(curpCliente)
 REFERENCES cliente(curp) ON UPDATE CASCADE ON DELETE CASCADE;
+COMMENT ON CONSTRAINT tarjeta_fkeyCliente ON tarjeta IS 'La llave foranea de la tarjeta que hace referencia a cliente';
 
 /*
  * Llaves mascota
  */
 ALTER TABLE mascota ADD CONSTRAINT mascota_pkey PRIMARY KEY(nomMascota, curpCliente);
+COMMENT ON CONSTRAINT mascota_pkey ON mascota IS 'La llave compuesta de la tabla mascota';
 ALTER TABLE mascota ADD CONSTRAINT mascota_fkeyCliente FOREIGN KEY(curpCliente)
 REFERENCES cliente(curp) ON UPDATE CASCADE ON DELETE CASCADE;
+COMMENT ON CONSTRAINT mascota_fkeyCliente ON mascota IS 'La llave foranea de la mascota que hace referencia a cliente';
 ALTER TABLE mascota ADD CONSTRAINT mascota_fkeyEstilista FOREIGN KEY(curpEstilista)
 REFERENCES estilista(curp) ON UPDATE CASCADE ON DELETE CASCADE;
+COMMENT ON CONSTRAINT mascota_fkeyEstilista ON mascota IS 'La llave foranea de la mascota que hace referencia a estilista';
 
 /*
 LLAVES PRIMARIAS
@@ -470,11 +475,16 @@ LLAVES PRIMARIAS
 LLAVES COMPUESTAS
 */
 ALTER TABLE medicamentos ADD CONSTRAINT medicamentos_pkey PRIMARY KEY (idConsulta, medicamentos);
+COMMENT ON CONSTRAINT medicamentos_pkey ON medicamentos IS 'La llave compuesta de la tabla medicamentos';
 ALTER TABLE medicamentos ADD CONSTRAINT idConsulta_fkey1 FOREIGN KEY (idConsulta) 
 REFERENCES consnormal(idConsulta)  ON UPDATE CASCADE ON DELETE CASCADE;
+COMMENT ON CONSTRAINT idConsulta_fkey1 ON medicamentos IS 'La llave foranea de los medicamentos que hace referencia a consnormal';
 ALTER TABLE sintomaleve ADD CONSTRAINT sintomaleve_pkey PRIMARY KEY (idConsulta, sintoma);
+COMMENT ON CONSTRAINT sintomaleve_pkey ON sintomaleve IS 'La llave compuesta de la tabla sintomaleve';
 ALTER TABLE sintomaleve ADD CONSTRAINT sintomaleve_fkey1 FOREIGN KEY (idConsulta) 
 REFERENCES consemergencialeve(idConsulta) ON UPDATE CASCADE ON DELETE CASCADE;
+COMMENT ON CONSTRAINT sintomaleve_fkey1 ON sintomaleve IS 'La llave foranea de sintomaleve que hace referencia a consemergencialeve';
+/*FIN*/
 ALTER TABLE sintomaconsiderable ADD CONSTRAINT sintomaconsiderable_pkey PRIMARY KEY (idConsulta,sintoma);
 ALTER TABLE sintomaconsiderable ADD CONSTRAINT sintomaconsiderable_fkey1 FOREIGN KEY (idConsulta) 
 REFERENCES consemergenciaconsiderable(idConsulta) ON UPDATE CASCADE ON DELETE CASCADE;
