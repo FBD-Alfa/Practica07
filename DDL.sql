@@ -10,7 +10,6 @@ CREATE TABLE consemergencialeve(
 	precioEmergencia INT NOT NULL,
 	procedimiento CHAR(100) CHECK(procedimiento <> '')
 );
-
 COMMENT ON TABLE consemergencialeve IS 'Tabla que contiene informacion sobre las consultas de emergencia leve';
 COMMENT ON COLUMN consemergencialeve.idConsulta IS 'El id que identifica a la consulta';
 COMMENT ON COLUMN consemergencialeve.curpCliente IS 'La CURP del cliente';
@@ -29,7 +28,6 @@ CREATE TABLE consemergenciaconsiderable(
 	precioEmergencia INT NOT NULL,
 	procedimiento CHAR(100) CHECK(procedimiento <> '')
 );
-
 COMMENT ON TABLE consemergenciaconsiderable IS 'Tabla que contiene informacion sobre las consultas de emergencia considerable';
 COMMENT ON COLUMN consemergenciaconsiderable.idConsulta IS 'El id que identifica a la consulta';
 COMMENT ON COLUMN consemergenciaconsiderable.curpCliente IS 'La CURP del cliente';
@@ -48,7 +46,6 @@ CREATE TABLE consemergenciagrave(
 	precioEmergencia INT NOT NULL,
 	procedimiento CHAR(100) CHECK(procedimiento <> '')
 );
-
 COMMENT ON TABLE consemergenciagrave IS 'Tabla que contiene informacion sobre las consultas de emergencia grave';
 COMMENT ON COLUMN consemergenciagrave.idConsulta IS 'El id que identifica a la consulta';
 COMMENT ON COLUMN consemergenciagrave.curpCliente IS 'La CURP del cliente';
@@ -69,7 +66,6 @@ CREATE TABLE consnormal(
 	motivo VARCHAR(50) CHECK(motivo <> ''),
 	fecha DATE NOT NULL
 );
-
 COMMENT ON TABLE consnormal IS 'Tabla que contiene informacion sobre las consultas de emergencia grave';
 COMMENT ON COLUMN consnormal.idConsulta IS 'El id que identifica a la consulta';
 COMMENT ON COLUMN consnormal.curpCliente IS 'La CURP del cliente';
@@ -85,34 +81,66 @@ CREATE TABLE medicamentos(
 	idConsulta INT NOT NULL,
 	medicamentos VARCHAR(50) NOT NULL
 );
+COMMENT ON TABLE medicamentos IS 'Tabla que contiene informacion sobre los medicamentos';
+COMMENT ON COLUMN medicamentos.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN medicamentos.medicamentos IS 'Los medicamentos de la mascota';
+
 CREATE TABLE sintomaleve (
 	idConsulta INT NOT NULL UNIQUE,
 	sintoma VARCHAR (50)
 );
+COMMENT ON TABLE sintomaleve IS 'Tabla que contiene informacion sobre los medicamentos';
+COMMENT ON COLUMN sintomaleve.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN sintomaleve.sintoma IS 'Los sintomas de la mascota en consulta emergencia leve';
+
 CREATE TABLE sintomaconsiderable (
 	idConsulta INT NOT NULL UNIQUE,
 	sintoma VARCHAR (50)
 );
+COMMENT ON TABLE sintomaconsiderable IS 'Tabla que contiene informacion sobre los medicamentos';
+COMMENT ON COLUMN sintomaconsiderable.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN sintomaconsiderable.sintoma IS 'Los sintomas de la mascota en consulta emergencia considerable';
+
 CREATE TABLE sintomagrave (
 	idConsulta INT NOT NULL UNIQUE,
 	sintoma VARCHAR (50)
 );
+COMMENT ON TABLE sintomagrave IS 'Tabla que contiene informacion sobre los medicamentos';
+COMMENT ON COLUMN sintomagrave.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN sintomagrave.sintoma IS 'Los sintomas de la mascota en consulta emergencia grave';
+
 CREATE TABLE generarconsemergencialeve(
 	idConsulta INT NOT NULL,
 	idRecibo INT NOT NULL UNIQUE
 );
+COMMENT ON TABLE generarconsemergencialeve IS 'Tabla que contiene informacion sobre los medicamentos';
+COMMENT ON COLUMN generarconsemergencialeve.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN generarconsemergencialeve.idRecibo IS 'El identificador del recibo de la consulta';
+
 CREATE TABLE generarconsemergenciaconsiderable(
 	idConsulta INT NOT NULL,
 	idRecibo INT NOT NULL UNIQUE
 );
+COMMENT ON TABLE generarconsemergenciaconsiderable IS 'Tabla que contiene informacion sobre los medicamentos';
+COMMENT ON COLUMN generarconsemergenciaconsiderable.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN generarconsemergenciaconsiderable.idRecibo IS 'El identificador del recibo de la consulta';
+
 CREATE TABLE generarconsemergenciagrave(
 	idConsulta INT NOT NULL,
 	idRecibo INT NOT NULL UNIQUE
 );
+COMMENT ON TABLE generarconsemergenciagrave IS 'Tabla que contiene informacion sobre los medicamentos';
+COMMENT ON COLUMN generarconsemergenciagrave.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN generarconsemergenciagrave.idRecibo IS 'El identificador del recibo de la consulta';
+
 CREATE TABLE generarconsnormal(
 	idConsulta INT NOT NULL,
 	idRecibo INT NOT NULL UNIQUE
 );
+COMMENT ON TABLE generarconsnormal IS 'Tabla que contiene informacion sobre los medicamentos';
+COMMENT ON COLUMN generarconsnormal.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN generarconsnormal.idRecibo IS 'El identificador del recibo de la consulta';
+
 CREATE TABLE cliente(
     curp CHAR(18) NOT NULL UNIQUE,
     apellidoM VARCHAR(30) NOT NULL,
@@ -122,11 +150,24 @@ CREATE TABLE cliente(
     calle VARCHAR(50) NOT NULL,
     numero SMALLINT NOT NULL,
     cp INT NOT NULL,
-    telefono BIGINT NOT NULL, /*longitud*/
+    telefono BIGINT NOT NULL,
     cumpleanios DATE,
     email VARCHAR(100),
     esFrecuente BOOLEAN NOT NULL
 );
+COMMENT ON TABLE cliente IS 'Tabla que contiene la información de un cliente.';
+COMMENT ON COLUMN cliente.curp IS 'Identificador del cliente, corresponde a su curp.';
+COMMENT ON COLUMN cliente.apellidoM IS 'Apellido materno del cliente.';
+COMMENT ON COLUMN cliente.apellidoP IS 'Apellido paterno del cliente.';
+COMMENT ON COLUMN cliente.nombre IS 'Nombre del cliente.';
+COMMENT ON COLUMN cliente.estado IS 'Estado en el que vive el cliente.';
+COMMENT ON COLUMN cliente.calle IS 'Calle de la dirección del cliente.';
+COMMENT ON COLUMN cliente.numero IS 'Número en la dirección del cliente.';
+COMMENT ON COLUMN cliente.cp IS 'Código postal de la dirección del cliente.';
+COMMENT ON COLUMN cliente.telefono IS 'Teléfono del cliente.';
+COMMENT ON COLUMN cliente.cumpleanios IS 'Fecha de cumpleaños del cliente.';
+COMMENT ON COLUMN cliente.email IS 'Dirección de correo electrónico del cliente.';
+COMMENT ON COLUMN cliente.esFrecuente IS 'Indicador de frecuencia del cliente.';
 
 CREATE TABLE tarjeta(
     numTarjeta VARCHAR(19) NOT NULL UNIQUE,
@@ -134,15 +175,30 @@ CREATE TABLE tarjeta(
     vencimiento DATE NOT NULL,
     titular VARCHAR(100) NOT NULL
 );
+COMMENT ON TABLE tarjeta IS 'Tabla que contiene la información de las tarjetas de un cliente.';
+COMMENT ON COLUMN tarjeta.numTarjeta IS 'Número de tarjeta del cliente.';
+COMMENT ON COLUMN tarjeta.curpCLiente IS 'Llave foránea correspondiente a la curp del dueño de la tarjeta.';
+COMMENT ON COLUMN tarjeta.vencimiento IS 'Fecha de vencimiento de la tarjeta.';
+COMMENT ON COLUMN tarjeta.titular IS 'Nombre del titular de la tarjeta.';
 
 CREATE TABLE mascota(
-    nomMascota VARCHAR(50) NOT NULL UNIQUE ,
+    nomMascota VARCHAR(50) NOT NULL UNIQUE,
     curpCliente CHAR(18) NOT NULL,
+	curpEstilista CHAR(18) NOT NULL,
     especie VARCHAR(50) NOT NULL,
     raza VARCHAR(50) NOT NULL,
     peso DECIMAL(5,2) NOT NULL,
     edad SMALLINT NOT NULL
 );
+COMMENT ON TABLE mascota IS 'Tabla que contiene informacion sobre las mascotas';
+COMMENT ON COLUMN mascota.nomMascota IS 'El nombre de la mascota';
+COMMENT ON COLUMN mascota.curpCliente IS 'El identificador del cliente';
+COMMENT ON COLUMN mascota.curpEstilista IS 'El identificador del estilista';
+COMMENT ON COLUMN mascota.especie IS 'La especie a la que pertenece la mascota';
+COMMENT ON COLUMN mascota.raza IS 'La raza a la que pertenece la mascota';
+COMMENT ON COLUMN mascota.peso IS 'El peso de la mascota';
+COMMENT ON COLUMN mascota.edad IS 'El edad de la mascota';
+
  CREATE TABLE producto(
 	 idProducto CHAR(10) NOT NULL UNIQUE CHECK(CHAR_LENGTH(idProducto) = 10) UNIQUE,
 	 idEstetica INT CHECK(idEstetica <> 0),
@@ -156,11 +212,26 @@ CREATE TABLE mascota(
 	 caducidad DATE CHECK(caducidad > '2022-04-01'),
 	 esProductoCaducable BOOLEAN NOT NULL
  );
+COMMENT ON TABLE producto IS 'Tabla que contiene informacion sobre los productos';
+COMMENT ON COLUMN producto.idProducto IS 'El identificador del producto';
+COMMENT ON COLUMN producto.idEstetica IS 'El identificador de la estética en la que está el producto';
+COMMENT ON COLUMN producto.idRecibo IS 'El identificador del recibo en el que se cobró este producto';
+COMMENT ON COLUMN producto.nombreImagen IS 'El nombre de la imagen que corresponde a este producto';
+COMMENT ON COLUMN producto.precio IS 'El precio del producto';
+COMMENT ON COLUMN producto.nombre IS 'El nombre del producto';
+COMMENT ON COLUMN producto.cantidad IS 'Es la cantidad de ejemplares de este producto en la estética';
+COMMENT ON COLUMN producto.descripcion IS 'Es la descripción del producto';
+COMMENT ON COLUMN producto.tipo IS 'El tipo de producto';
+COMMENT ON COLUMN producto.caducidad IS 'La fecha de caducidad del producto';
+COMMENT ON COLUMN producto.esProductoCaducable IS 'Es true si y sólo sí el producto es caducable';
  
  CREATE TABLE caja(
 	 noCaja INT CHECK(noCaja <> 0) UNIQUE,
 	 idEstetica INT CHECK(idEstetica <> 0)
  );
+COMMENT ON TABLE caja IS 'Tabla que contiene informacion de la caja';
+COMMENT ON COLUMN caja.noCaja IS 'El numero de la caja';
+COMMENT ON COLUMN caja.idEstetica IS 'El identificador de la estetica';
  
  CREATE TABLE recibo(
 	 idRecibo INT CHECK(idRecibo <> 0) UNIQUE,
@@ -169,6 +240,12 @@ CREATE TABLE mascota(
 	 esFisico BOOLEAN NOT NULL,
 	 esOnline BOOLEAN NOT NULL
  );
+COMMENT ON TABLE recibo IS 'Tabla que contiene informacion sobre los recibos';
+COMMENT ON COLUMN recibo.idRecibo IS 'El numero identificador de los recibos';
+COMMENT ON COLUMN recibo.idEstetica IS 'El numero identificador de los recibos';
+COMMENT ON COLUMN recibo.noCaja IS 'El numero de caja en que se atendio al cliente';
+COMMENT ON COLUMN recibo.esFisico IS 'Booleano que indica si es pago físico';
+COMMENT ON COLUMN recibo.esOnline IS 'Booleano que indica si es pago online';
 
 CREATE TABLE estetica(
 	idEstetica INT NOT NULL UNIQUE,
@@ -179,13 +256,24 @@ CREATE TABLE estetica(
 	cp INT CHECK(cp between 10000 and 99999),
 	horario INT NOT NULL,
 	noConsultorio INT NOT NULL
-	
 );
+COMMENT ON TABLE estetica IS 'Tabla que contiene informacion de cada estética';
+COMMENT ON COLUMN estetica.idEstetica IS 'El identificador de cada estética';
+COMMENT ON COLUMN estetica.nombre IS 'El nombre de la estética';
+COMMENT ON COLUMN estetica.calle IS 'Calle de la dirección de la estética';
+COMMENT ON COLUMN estetica.numero IS 'Numero de la dirección de la estética';
+COMMENT ON COLUMN estetica.cp IS 'Código postal de la dirección de la estética';
+COMMENT ON COLUMN estetica.horario IS 'Horario de servicio de la estética';
+COMMENT ON COLUMN estetica.noConsultorio IS 'Cantidad de consultorios de la estética';
 
 CREATE TABLE telefono(
 	telefono CHAR(10) CHECK (telefono SIMILAR TO '[0-9]*'),
 	idEstetica SERIAL NOT NULL UNIQUE
 );
+COMMENT ON TABLE telefono IS 'Tabla que contiene informacion de cada teléfono de las estéticas';
+COMMENT ON COLUMN telefono.telefono IS 'Cadena que guarda el número de teléfono';
+COMMENT ON COLUMN telefono.idEstetica IS 'Identificador de la estética a la que pertenece este teléfono';
+
 
 CREATE TABLE supervisor(
 	curp CHAR(18) NOT NULL CHECK(CHAR_LENGTH(curp)=18),
@@ -206,8 +294,27 @@ CREATE TABLE supervisor(
 	fin INT NOT NULL,
 	fechaInicio DATE NOT NULL,
 	fechaTermino DATE NOT NULL
-	
 );
+COMMENT ON TABLE supervisor IS 'Tabla que contiene informacion del supervisor';
+COMMENT ON COLUMN supervisor.curp IS 'El identificador del supervisor';
+COMMENT ON COLUMN supervisor.idEstetica IS 'El identificador de la estetica';
+COMMENT ON COLUMN supervisor.apellidoM IS 'El apellido materno del supervisor';
+COMMENT ON COLUMN supervisor.apellidoP IS 'El apellido paterno del supervisor';
+COMMENT ON COLUMN supervisor.nombre IS 'El nombre del supervisor';
+COMMENT ON COLUMN supervisor.estado IS 'El estado donde vive el supervisor';
+COMMENT ON COLUMN supervisor.calle IS 'La calle donde vive el supervisor';
+COMMENT ON COLUMN supervisor.numero IS 'El número de casa donde vive el supervisor';
+COMMENT ON COLUMN supervisor.cp IS 'El código postal de donde vive el supervisor';
+COMMENT ON COLUMN supervisor.telefono IS 'El telefono del supervisor';
+COMMENT ON COLUMN supervisor.genero IS 'El genero del supervisor';
+COMMENT ON COLUMN supervisor.nacimiento IS 'La fecha de nacimiento del supervisor';
+COMMENT ON COLUMN supervisor.salario IS 'El salario que gana el supervisor';
+COMMENT ON COLUMN supervisor.RFC IS 'El RFC del supervisor';
+COMMENT ON COLUMN supervisor.inicio IS 'Representa la hora de inicio de horario del supervisor';
+COMMENT ON COLUMN supervisor.fin IS 'Representa la hora de salida del supervisor';
+COMMENT ON COLUMN supervisor.fechaInicio IS 'Fecha en que el supervisor comenzo a trabajar en la veterinaria';
+COMMENT ON COLUMN supervisor.fechaTermino IS 'Fecha en que el supervisor dejó de trabajar en la veterinaria';
+
 
 CREATE TABLE veterinario(
 	curp CHAR(18) NOT NULL CHECK(CHAR_LENGTH(curp)=18),
@@ -230,6 +337,25 @@ CREATE TABLE veterinario(
 	fechaInicio DATE NOT NULL,
 	fechaTermino DATE NOT NULL
 	);
+COMMENT ON TABLE veterinario IS 'Tabla que contiene informacion de los veterinarios';
+COMMENT ON COLUMN veterinario.curp IS 'Clave unica de registro de poblacion';
+COMMENT ON COLUMN veterinario.idEstetica IS 'numero de identifiacion unica para las esteticas';
+COMMENT ON COLUMN veterinario.apellidoM IS 'Apellido materno del veterinario';
+COMMENT ON COLUMN veterinario.apellidoP IS 'Apellido paterno del veterinario';
+COMMENT ON COLUMN veterinario.nombre IS 'Nombre del veterinario';
+COMMENT ON COLUMN veterinario.estado IS 'Estado donde reside el veterinario';
+COMMENT ON COLUMN veterinario.calle IS 'nombre de la calle donde reside el veterinario';
+COMMENT ON COLUMN veterinario.numero IS 'numero de la casa del veterinario';
+COMMENT ON COLUMN veterinario.cp IS 'codigo postal del veterinario';
+COMMENT ON COLUMN veterinario.telefono IS 'telefono del veterinario';
+COMMENT ON COLUMN veterinario.genero IS 'genero del veterinario';
+COMMENT ON COLUMN veterinario.nacimiento IS 'fecha de nacimiento del veterinario';
+COMMENT ON COLUMN veterinario.salario IS 'salario del veterinario';
+COMMENT ON COLUMN veterinario.RFC IS 'RFC del veterinario';
+COMMENT ON COLUMN veterinario.inicio IS 'hora de inicio de la jornada laboral del veterinario';
+COMMENT ON COLUMN veterinario.fin IS 'hora del fin de la jornada laboral del veterinario';
+COMMENT ON COLUMN veterinario.fechaInicio IS 'fecha de contratacion del veterinario';
+COMMENT ON COLUMN veterinario.fechaTermino IS 'fecha de despido del veterinario';
 	
 CREATE TABLE estilista(
 	curp CHAR(18) NOT NULL CHECK(CHAR_LENGTH(curp)=18),
@@ -245,66 +371,76 @@ CREATE TABLE estilista(
 	genero CHAR(1) CHECK(genero = 'H' or genero = 'F'),
 	nacimiento DATE NOT NULL,
 	salario INT NOT NULL,
-	RFC VARCHAR (30) NOT NULL CHECK (RFC <>''),
+	noCertificado VARCHAR(30) NOT NULL CHECK (noCertificado <>''),
 	inicio INT NOT NULL,
 	fin INT NOT NULL
 	);
-	
+COMMENT ON TABLE estilista IS 'Tabla que contiene información sobre el estilista ';
+COMMENT ON COLUMN estilista.curp IS 'Identificador del estilista';
+COMMENT ON COLUMN estilista.idEstetica IS 'Identificador de la estética';
+COMMENT ON COLUMN estilista.apellidoM IS 'Apellido materno del estilista';
+COMMENT ON COLUMN estilista.apellidoP IS 'Apellido paterno del estilista';
+COMMENT ON COLUMN estilista.nombre IS 'Nombre del estilista ';
+COMMENT ON COLUMN estilista.estado IS 'Estado de residencia';
+COMMENT ON COLUMN estilista.calle IS 'Calle del domicilio';
+COMMENT ON COLUMN estilista.numero IS 'Número del domicilio';
+COMMENT ON COLUMN estilista.cp IS 'código postal del domicilio ';
+COMMENT ON COLUMN estilista.telefono IS 'Teléfono del estilista ';
+COMMENT ON COLUMN estilista.genero IS 'Género del estilista';
+COMMENT ON COLUMN estilista.nacimiento  IS 'Fecha de nacimiento del estilista';
+COMMENT ON COLUMN estilista.salario IS 'Remuneración económica';
+COMMENT ON COLUMN estilista.inicio IS 'Inicio de la jornada laboral';
+COMMENT ON COLUMN estilista.fin  IS 'Fin de la jornada laboral';
 
 CREATE TABLE apartado(
 	llave SERIAL NOT NULL UNIQUE,
-	idEstetica SERIAL NOT NULL UNIQUE,
+	idEstetica SERIAL NOT NULL,
 	tipoApartado VARCHAR(50)
 );
 ALTER TABLE apartado ADD CONSTRAINT apartado_pkey PRIMARY KEY (llave);
 ALTER TABLE apartado ADD CONSTRAINT apartado_fkey FOREIGN KEY (idEstetica)
-REFERENCES estetica(idEstetica);
+REFERENCES estetica(idEstetica) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --llaves foraneas
 ALTER TABLE supervisor ADD CONSTRAINT supervisor_pkey PRIMARY KEY (curp);
 ALTER TABLE supervisor ADD CONSTRAINT supervisor_fkey FOREIGN KEY (idEstetica)
-REFERENCES estetica (idEstetica);
+REFERENCES estetica (idEstetica) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE veterinario ADD CONSTRAINT veterinario_pkey PRIMARY KEY (curp);
 ALTER TABLE veterinario ADD CONSTRAINT veterinario_fkey FOREIGN KEY (idEstetica)
-REFERENCES estetica (idEstetica);
+REFERENCES estetica (idEstetica) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE estilista ADD CONSTRAINT estilista_pkey PRIMARY KEY (curp);
 ALTER TABLE estilista ADD CONSTRAINT estilista_fkey FOREIGN KEY (idEstetica)
-REFERENCES estetica (idEstetica);
+REFERENCES estetica (idEstetica) ON UPDATE CASCADE ON DELETE CASCADE;
 
 --LLAVES compuestas
 ALTER TABLE telefono ADD CONSTRAINT telefono_pkey PRIMARY KEY (telefono, idEstetica);
 ALTER TABLE telefono ADD CONSTRAINT telefono_fkey FOREIGN KEY (idEstetica)
-REFERENCES estetica (idEstetica);
+REFERENCES estetica (idEstetica) ON UPDATE CASCADE ON DELETE CASCADE;
 
 --llaves primarias
 ALTER TABLE estetica ADD CONSTRAINT estetica_pkey PRIMARY KEY (idEstetica);
 /*
  * Llaves producto
  */ 
- ALTER TABLE producto ADD CONSTRAINT producto_pkey PRIMARY KEY(idProducto);
- ALTER TABLE producto ADD CONSTRAINT producto_fkeyEstetica FOREIGN KEY(idEstetica)
-REFERENCES estetica(idEstetica);
+ ALTER TABLE producto ADD CONSTRAINT producto_pkey PRIMARY KEY(idProducto, idEstetica);
  ALTER TABLE producto ADD CONSTRAINT producto_fkeyRecibo FOREIGN KEY(idRecibo)
-REFERENCES recibo(idRecibo);
+REFERENCES recibo(idRecibo) ON UPDATE CASCADE ON DELETE CASCADE;
 
 /*
  * Llaves caja
  */ 
- ALTER TABLE caja ADD CONSTRAINT caja_pkey PRIMARY KEY(noCaja);
- ALTER TABLE caja ADD CONSTRAINT caja_fkey FOREIGN KEY(idEstetica)
-REFERENCES estetica(idEstetica);
+ ALTER TABLE caja ADD CONSTRAINT caja_pkey PRIMARY KEY(noCaja, idEstetica);
 
 /*
  * Llaves recibo
  */
  ALTER TABLE recibo ADD CONSTRAINT recibo_pkey PRIMARY KEY(idRecibo); 
- ALTER TABLE recibo ADD CONSTRAINT recibo_fkeyRecibo FOREIGN KEY(idEstetica)
-REFERENCES estetica(idEstetica);
- ALTER TABLE recibo ADD CONSTRAINT recibo_fkeycaja FOREIGN KEY(noCaja)
-REFERENCES caja(noCaja);
+ ALTER TABLE recibo ADD CONSTRAINT recibo_fkeyRecibo FOREIGN KEY(idEstetica, noCaja)
+REFERENCES caja(idEstetica, noCaja) ON UPDATE CASCADE ON DELETE CASCADE;
+
 /*
  * Llaves cliente
  */
@@ -315,12 +451,17 @@ REFERENCES caja(noCaja);
  */
   ALTER TABLE tarjeta ADD CONSTRAINT tarjeta_pkey PRIMARY KEY(numTarjeta);
   ALTER TABLE tarjeta ADD CONSTRAINT tarjeta_fkeyCliente FOREIGN KEY(curpCliente)
-REFERENCES cliente(curp);
+REFERENCES cliente(curp) ON UPDATE CASCADE ON DELETE CASCADE;
 
 /*
  * Llaves mascota
  */
 ALTER TABLE mascota ADD CONSTRAINT mascota_pkey PRIMARY KEY(nomMascota, curpCliente);
+ALTER TABLE mascota ADD CONSTRAINT mascota_fkeyCliente FOREIGN KEY(curpCliente)
+REFERENCES cliente(curp) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE mascota ADD CONSTRAINT mascota_fkeyEstilista FOREIGN KEY(curpEstilista)
+REFERENCES estilista(curp) ON UPDATE CASCADE ON DELETE CASCADE;
+
 /*
 LLAVES PRIMARIAS
 */
@@ -328,41 +469,65 @@ LLAVES PRIMARIAS
 /*
 LLAVES COMPUESTAS
 */
-ALTER TABLE medicamentos ADD CONSTRAINT medicamentos_pkey PRIMARY KEY (idConsulta,medicamentos);
-ALTER TABLE sintomaleve ADD CONSTRAINT sintomaleve_pkey PRIMARY KEY (idConsulta,sintoma);
+ALTER TABLE medicamentos ADD CONSTRAINT medicamentos_pkey PRIMARY KEY (idConsulta, medicamentos);
+ALTER TABLE medicamentos ADD CONSTRAINT idConsulta_fkey1 FOREIGN KEY (idConsulta) 
+REFERENCES consnormal(idConsulta)  ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE sintomaleve ADD CONSTRAINT sintomaleve_pkey PRIMARY KEY (idConsulta, sintoma);
+ALTER TABLE sintomaleve ADD CONSTRAINT sintomaleve_fkey1 FOREIGN KEY (idConsulta) 
+REFERENCES consemergencialeve(idConsulta) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE sintomaconsiderable ADD CONSTRAINT sintomaconsiderable_pkey PRIMARY KEY (idConsulta,sintoma);
+ALTER TABLE sintomaconsiderable ADD CONSTRAINT sintomaconsiderable_fkey1 FOREIGN KEY (idConsulta) 
+REFERENCES consemergenciaconsiderable(idConsulta) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE sintomagrave ADD CONSTRAINT sintomagrave_pkey PRIMARY KEY (idConsulta,sintoma);
+ALTER TABLE sintomagrave ADD CONSTRAINT sintomagrave_fkey1 FOREIGN KEY (idConsulta) 
+REFERENCES consemergenciagrave(idConsulta) ON UPDATE CASCADE ON DELETE CASCADE;
 
 /*
 LLAVES FORANEAS
 */
 ALTER TABLE consemergencialeve ADD CONSTRAINT consemergencialeve_pkey PRIMARY KEY (idConsulta);
- ALTER TABLE consemergencialeve ADD CONSTRAINT consemergencialeve_fkey1 FOREIGN KEY (curpCliente) REFERENCES cliente(curp);
-ALTER TABLE consemergencialeve ADD CONSTRAINT consemergencialeve_fkey2 FOREIGN KEY (nomMascota) REFERENCES mascota(nomMascota);
-ALTER TABLE consemergencialeve ADD CONSTRAINT consemergencialeve_fkey3 FOREIGN KEY (curpVeterinario) REFERENCES veterinario(curp);
-ALTER TABLE consemergencialeve ADD CONSTRAINT consemergencialeve_fkey4 FOREIGN KEY (idEstetica) REFERENCES estetica(idEstetica);
+ALTER TABLE consemergencialeve ADD CONSTRAINT consemergencialeve_fkey2 FOREIGN KEY (curpCliente, nomMascota) 
+REFERENCES mascota(curpCliente, nomMascota) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE consemergencialeve ADD CONSTRAINT consemergencialeve_fkey3 FOREIGN KEY (curpVeterinario) 
+REFERENCES veterinario(curp) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE consemergencialeve ADD CONSTRAINT consemergencialeve_fkey4 FOREIGN KEY (idEstetica) 
+REFERENCES estetica(idEstetica) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE consemergenciaconsiderable ADD CONSTRAINT consemergenciaconsiderable_pkey PRIMARY KEY (idConsulta);
-ALTER TABLE consemergenciaconsiderable ADD CONSTRAINT consemergenciaconsiderable_fkey1 FOREIGN KEY (curpCliente) REFERENCES cliente(curp);
-ALTER TABLE consemergenciaconsiderable ADD CONSTRAINT consemergenciaconsiderable_fkey2 FOREIGN KEY (nomMascota) REFERENCES mascota(nomMascota);
-ALTER TABLE consemergenciaconsiderable ADD CONSTRAINT consemergenciaconsiderable_fkey3 FOREIGN KEY (curpVeterinario) REFERENCES veterinario(curp);
-ALTER TABLE consemergenciaconsiderable ADD CONSTRAINT consemergenciaconsiderable_fkey4 FOREIGN KEY (idEstetica) REFERENCES estetica(idEstetica);
+ALTER TABLE consemergenciaconsiderable ADD CONSTRAINT consemergenciaconsiderable_fkey2 FOREIGN KEY (curpCliente, nomMascota) 
+REFERENCES mascota(curpCliente, nomMascota) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE consemergenciaconsiderable ADD CONSTRAINT consemergenciaconsiderable_fkey3 FOREIGN KEY (curpVeterinario) 
+REFERENCES veterinario(curp) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE consemergenciaconsiderable ADD CONSTRAINT consemergenciaconsiderable_fkey4 FOREIGN KEY (idEstetica) 
+REFERENCES estetica(idEstetica) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE consemergenciagrave ADD CONSTRAINT consemergenciagrave_pkey PRIMARY KEY (idConsulta);
-ALTER TABLE consemergenciagrave ADD CONSTRAINT consemergenciagrave_fkey1 FOREIGN KEY (curpCliente) REFERENCES cliente(curp);
- ALTER TABLE consemergenciagrave ADD CONSTRAINT consemergenciagrave_fkey2 FOREIGN KEY (nomMascota) REFERENCES mascota(nomMascota);
-ALTER TABLE consemergenciagrave ADD CONSTRAINT consemergenciagrave_fkey3 FOREIGN KEY (curpVeterinario) REFERENCES veterinario(curp);
-ALTER TABLE consemergenciagrave ADD CONSTRAINT consemergenciagrave_fkey4 FOREIGN KEY (idEstetica) REFERENCES estetica(idEstetica);
+ALTER TABLE consemergenciagrave ADD CONSTRAINT consemergenciagrave_fkey2 FOREIGN KEY (curpCliente, nomMascota) 
+REFERENCES mascota(curpCliente, nomMascota) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE consemergenciagrave ADD CONSTRAINT consemergenciagrave_fkey3 FOREIGN KEY (curpVeterinario) 
+REFERENCES veterinario(curp) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE consemergenciagrave ADD CONSTRAINT consemergenciagrave_fkey4 FOREIGN KEY (idEstetica) 
+REFERENCES estetica(idEstetica) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE consnormal ADD CONSTRAINT consnormal_pkey PRIMARY KEY (idConsulta);
-ALTER TABLE consnormal ADD CONSTRAINT consnormal_fkey1 FOREIGN KEY (curpCliente) REFERENCES cliente(curp);
-ALTER TABLE consnormal ADD CONSTRAINT consnormal_fkey2 FOREIGN KEY (nomMascota) REFERENCES mascota(nomMascota);
-ALTER TABLE consnormal ADD CONSTRAINT consnormal_fkey3 FOREIGN KEY (curpVeterinario) REFERENCES veterinario(curp);
-ALTER TABLE consnormal ADD CONSTRAINT consnormal_fkey4 FOREIGN KEY (idEstetica) REFERENCES estetica(idEstetica);
+ALTER TABLE consnormal ADD CONSTRAINT consnormal_fkey2 FOREIGN KEY (curpCliente, nomMascota) 
+REFERENCES mascota(curpCliente, nomMascota) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE consnormal ADD CONSTRAINT consnormal_fkey3 FOREIGN KEY (curpVeterinario) 
+REFERENCES veterinario(curp) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE consnormal ADD CONSTRAINT consnormal_fkey4 FOREIGN KEY (idEstetica) 
+REFERENCES estetica(idEstetica) ON UPDATE CASCADE ON DELETE CASCADE;
 
-ALTER TABLE generarconsemergencialeve ADD CONSTRAINT generarconsemergencialeve_fkey1 FOREIGN KEY (idRecibo) REFERENCES recibo(idRecibo);
-ALTER TABLE generarconsemergencialeve ADD CONSTRAINT generarconsemergencialeve_fkey2 FOREIGN KEY (idConsulta ) REFERENCES consemergencialeve (idConsulta);
-ALTER TABLE generarconsemergencialeve ADD CONSTRAINT generarconsemergenciaconsiderable_fkey1 FOREIGN KEY (idConsulta ) REFERENCES recibo(idRecibo);
-ALTER TABLE generarconsemergencialeve ADD CONSTRAINT generarconsemergenciaconsiderable_fkey2 FOREIGN KEY (idConsulta ) REFERENCES consemergenciaconsiderable (idConsulta);
-ALTER TABLE generarconsemergenciagrave ADD CONSTRAINT generarconsemergenciagrave_fkey1 FOREIGN KEY (idConsulta ) REFERENCES recibo(idRecibo);
-ALTER TABLE generarconsemergenciagrave ADD CONSTRAINT generarconsemergenciagrave_fkey2 FOREIGN KEY (idConsulta ) REFERENCES consemergenciagrave (idConsulta);
-ALTER TABLE generarconsnormal ADD CONSTRAINT generarconsnormal_fkey1 FOREIGN KEY (idConsulta ) REFERENCES recibo(idRecibo);
-ALTER TABLE generarconsnormal ADD CONSTRAINT generarconsnormal_fkey2 FOREIGN KEY (idConsulta ) REFERENCES consnormal (idConsulta);
+ALTER TABLE generarconsemergencialeve ADD CONSTRAINT generarconsemergencialeve_fkey1 FOREIGN KEY (idRecibo) 
+REFERENCES recibo(idRecibo) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE generarconsemergencialeve ADD CONSTRAINT generarconsemergencialeve_fkey2 FOREIGN KEY (idConsulta ) 
+REFERENCES consemergencialeve (idConsulta) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE generarconsemergenciaconsiderable ADD CONSTRAINT generarconsemergenciaconsiderable_fkey1 FOREIGN KEY (idRecibo) 
+REFERENCES recibo(idRecibo) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE generarconsemergenciaconsiderable ADD CONSTRAINT generarconsemergenciaconsiderable_fkey2 FOREIGN KEY (idConsulta) 
+REFERENCES consemergenciaconsiderable (idConsulta) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE generarconsemergenciagrave ADD CONSTRAINT generarconsemergenciagrave_fkey1 FOREIGN KEY (idRecibo ) 
+REFERENCES recibo(idRecibo) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE generarconsemergenciagrave ADD CONSTRAINT generarconsemergenciagrave_fkey2 FOREIGN KEY (idConsulta ) 
+REFERENCES consemergenciagrave (idConsulta) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE generarconsnormal ADD CONSTRAINT generarconsnormal_fkey1 FOREIGN KEY (idRecibo) 
+REFERENCES recibo(idRecibo) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE generarconsnormal ADD CONSTRAINT generarconsnormal_fkey2 FOREIGN KEY (idConsulta) 
+REFERENCES consnormal (idConsulta) ON UPDATE CASCADE ON DELETE CASCADE;
 
