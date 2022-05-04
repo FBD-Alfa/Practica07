@@ -10,6 +10,16 @@ CREATE TABLE consemergencialeve(
 	precioEmergencia INT NOT NULL,
 	procedimiento CHAR(100) CHECK(procedimiento <> '')
 );
+
+COMMENT ON TABLE consemergencialeve IS 'Tabla que contiene informacion sobre las consultas de emergencia leve';
+COMMENT ON COLUMN consemergencialeve.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN consemergencialeve.curpCliente IS 'La CURP del cliente';
+COMMENT ON COLUMN consemergencialeve.nomMascota IS 'El nombre de la mascota que entro a consulta';
+COMMENT ON COLUMN consemergencialeve.curpVeterinario IS 'La CURP del veterinario que atendio a la mascota';
+COMMENT ON COLUMN consemergencialeve.idEstetica IS 'El id con el que se identifica la estetica';
+COMMENT ON COLUMN consemergencialeve.precioEmergencia IS 'El precio por la consulta';
+COMMENT ON COLUMN consemergencialeve.procedimiento IS 'El procedimiento llevado a cabo por el veterinario';
+
 CREATE TABLE consemergenciaconsiderable(
 	idConsulta INT NOT NULL UNIQUE,
 	curpCliente CHAR(18) NOT NULL,
@@ -19,6 +29,16 @@ CREATE TABLE consemergenciaconsiderable(
 	precioEmergencia INT NOT NULL,
 	procedimiento CHAR(100) CHECK(procedimiento <> '')
 );
+
+COMMENT ON TABLE consemergenciaconsiderable IS 'Tabla que contiene informacion sobre las consultas de emergencia considerable';
+COMMENT ON COLUMN consemergenciaconsiderable.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN consemergenciaconsiderable.curpCliente IS 'La CURP del cliente';
+COMMENT ON COLUMN consemergenciaconsiderable.nomMascota IS 'El nombre de la mascota que entro a consulta';
+COMMENT ON COLUMN consemergenciaconsiderable.curpVeterinario IS 'La CURP del veterinario que atendio a la mascota';
+COMMENT ON COLUMN consemergenciaconsiderable.idEstetica IS 'El id con el que se identifica la estetica';
+COMMENT ON COLUMN consemergenciaconsiderable.precioEmergencia IS 'El precio por la consulta';
+COMMENT ON COLUMN consemergenciaconsiderable.procedimiento IS 'El procedimiento llevado a cabo por el veterinario';
+
 CREATE TABLE consemergenciagrave(
 	idConsulta INT NOT NULL UNIQUE,
 	curpCliente CHAR(18) NOT NULL,
@@ -28,6 +48,16 @@ CREATE TABLE consemergenciagrave(
 	precioEmergencia INT NOT NULL,
 	procedimiento CHAR(100) CHECK(procedimiento <> '')
 );
+
+COMMENT ON TABLE consemergenciagrave IS 'Tabla que contiene informacion sobre las consultas de emergencia grave';
+COMMENT ON COLUMN consemergenciagrave.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN consemergenciagrave.curpCliente IS 'La CURP del cliente';
+COMMENT ON COLUMN consemergenciagrave.nomMascota IS 'El nombre de la mascota que entro a consulta';
+COMMENT ON COLUMN consemergenciagrave.curpVeterinario IS 'La CURP del veterinario que atendio a la mascota';
+COMMENT ON COLUMN consemergenciagrave.idEstetica IS 'El id con el que se identifica la estetica';
+COMMENT ON COLUMN consemergenciagrave.precioEmergencia IS 'El precio por la consulta';
+COMMENT ON COLUMN consemergenciagrave.procedimiento IS 'El procedimiento llevado a cabo por el veterinario';
+
 CREATE TABLE consnormal(
 	idConsulta INT NOT NULL UNIQUE,
 	curpCliente CHAR(18) NOT NULL,
@@ -39,6 +69,18 @@ CREATE TABLE consnormal(
 	motivo VARCHAR(50) CHECK(motivo <> ''),
 	fecha DATE NOT NULL
 );
+
+COMMENT ON TABLE consnormal IS 'Tabla que contiene informacion sobre las consultas de emergencia grave';
+COMMENT ON COLUMN consnormal.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN consnormal.curpCliente IS 'La CURP del cliente';
+COMMENT ON COLUMN consnormal.nomMascota IS 'El nombre de la mascota que entro a consulta';
+COMMENT ON COLUMN consnormal.curpVeterinario IS 'La CURP del veterinario que atendio a la mascota';
+COMMENT ON COLUMN consnormal.idEstetica IS 'El id con el que se identifica la estetica';
+COMMENT ON COLUMN consnormal.precioNormal IS 'El precio por la consulta';
+COMMENT ON COLUMN consnormal.estadoSalud IS 'El estado de salud de la mascota';
+COMMENT ON COLUMN consnormal.motivo IS 'El motivo de la consulta';
+COMMENT ON COLUMN consnormal.fecha IS 'La fecha en la que se realizo la consulta';
+
 CREATE TABLE medicamentos(
 	idConsulta INT NOT NULL,
 	medicamentos VARCHAR(50) NOT NULL
