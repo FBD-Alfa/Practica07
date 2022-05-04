@@ -85,34 +85,74 @@ CREATE TABLE medicamentos(
 	idConsulta INT NOT NULL,
 	medicamentos VARCHAR(50) NOT NULL
 );
+
+COMMENT ON TABLE medicamentos IS 'Tabla que contiene informacion sobre los medicamentos';
+COMMENT ON COLUMN medicamentos.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN medicamentos.medicamentos IS 'Los medicamentos de la mascota';
+
 CREATE TABLE sintomaleve (
 	idConsulta INT NOT NULL UNIQUE,
 	sintoma VARCHAR (50)
 );
+
+COMMENT ON TABLE sintomaleve IS 'Tabla que contiene informacion sobre los medicamentos';
+COMMENT ON COLUMN sintomaleve.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN sintomaleve.sintoma IS 'Los sintomas de la mascota en consulta emergencia leve';
+
 CREATE TABLE sintomaconsiderable (
 	idConsulta INT NOT NULL UNIQUE,
 	sintoma VARCHAR (50)
 );
+
+COMMENT ON TABLE sintomaconsiderable IS 'Tabla que contiene informacion sobre los medicamentos';
+COMMENT ON COLUMN sintomaconsiderable.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN sintomaconsiderable.sintoma IS 'Los sintomas de la mascota en consulta emergencia considerable';
+
 CREATE TABLE sintomagrave (
 	idConsulta INT NOT NULL UNIQUE,
 	sintoma VARCHAR (50)
 );
+
+COMMENT ON TABLE sintomagrave IS 'Tabla que contiene informacion sobre los medicamentos';
+COMMENT ON COLUMN sintomagrave.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN sintomagrave.sintoma IS 'Los sintomas de la mascota en consulta emergencia leve';
+
 CREATE TABLE generarconsemergencialeve(
 	idConsulta INT NOT NULL,
 	idRecibo INT NOT NULL UNIQUE
 );
+
+COMMENT ON TABLE generarconsecuencialeve IS 'Tabla que contiene informacion sobre los medicamentos';
+COMMENT ON COLUMN generarconsecuencialeve.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN generarconsecuencialeve.idRecibo IS 'El identificador del recibo de la consulta';
+
 CREATE TABLE generarconsemergenciaconsiderable(
 	idConsulta INT NOT NULL,
 	idRecibo INT NOT NULL UNIQUE
 );
+
+COMMENT ON TABLE generarconsecuenciaconsiderable IS 'Tabla que contiene informacion sobre los medicamentos';
+COMMENT ON COLUMN generarconsecuenciaconsiderable.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN generarconsecuenciaconsiderable.idRecibo IS 'El identificador del recibo de la consulta';
+
 CREATE TABLE generarconsemergenciagrave(
 	idConsulta INT NOT NULL,
 	idRecibo INT NOT NULL UNIQUE
 );
+
+COMMENT ON TABLE generarconsecuenciagraveIS 'Tabla que contiene informacion sobre los medicamentos';
+COMMENT ON COLUMN generarconsecuenciagrave.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN generarconsecuenciagrave.idRecibo IS 'El identificador del recibo de la consulta';
+
 CREATE TABLE generarconsnormal(
 	idConsulta INT NOT NULL,
 	idRecibo INT NOT NULL UNIQUE
 );
+
+COMMENT ON TABLE generarconsnormal IS 'Tabla que contiene informacion sobre los medicamentos';
+COMMENT ON COLUMN generarconsnormal.idConsulta IS 'El id que identifica a la consulta';
+COMMENT ON COLUMN generarconsnormal.idRecibo IS 'El identificador del recibo de la consulta';
+
 CREATE TABLE cliente(
     curp CHAR(18) NOT NULL UNIQUE,
     apellidoM VARCHAR(30) NOT NULL,
